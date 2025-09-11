@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "ColorCodeUtils.h"
 
 namespace TelCoColorCoder
@@ -15,9 +16,13 @@ namespace TelCoColorCoder
     }
 
     void PrintColorCodeManual() {
+        std::cout << "Color Code Reference Manual\n";
+        std::cout << "----------------------------\n";
         for (int i = 1; i <= numberOfMajorColors * numberOfMinorColors; ++i) {
             ColorPair cp = GetColorFromPairNumber(i);
-            std::cout << i << " : " << cp.ToString() << std::endl;
+            std::cout << std::setw(2) << i << " : "
+                      << std::setw(6) << MajorColorNames[cp.getMajor()] << " - "
+                      << MinorColorNames[cp.getMinor()] << std::endl;
         }
     }
 }
